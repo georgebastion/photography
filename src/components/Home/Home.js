@@ -7,11 +7,10 @@ import Typical from 'react-typical'
 
 import { IoChevronForwardOutline, IoChevronBackOutline } from 'react-icons/io5';
 
-
 const Home = () => {
     return (
         <div className='hometop'>
-            <Nav color='white' />
+            <Nav color='black' />
             <div className='centerHome'>
                 <div className='centerText'>
                     <Typical
@@ -40,6 +39,7 @@ const Home = () => {
                 </div>
                 
             </div>
+
         </div>
     );
 };

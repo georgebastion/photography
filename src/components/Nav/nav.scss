@@ -1,11 +1,13 @@
 .navbar{
     display: flex;
     justify-content: space-around;
-
-    position: absolute;
-    top: 2rem;
+    z-index: 10;
+    position: fixed;
+    padding-top: 1rem;
+    top: 0;
     left: 0;
     width: 100%;
+    background: rgba(255, 255, 255, 0.616);
 }
 .navlogo{
     display: flex;
@@ -20,12 +22,12 @@
 }
 .menuItem{
     text-decoration: none;
-    animation: line 2s linear forwards;
+    
     position: relative;
     font-size: 1.15rem;
 
     &:hover{
-        color:rgb(0, 0, 0);
+        color:rgb(241, 223, 223);
         cursor: pointer;
         &:before{
             transform: scaleX(1);
