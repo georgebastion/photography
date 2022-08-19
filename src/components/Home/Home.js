@@ -10,7 +10,6 @@ import { IoChevronForwardOutline, IoChevronBackOutline } from 'react-icons/io5';
 const Home = () => {
     return (
         <div className='hometop'>
-            <Nav color='black' />
             <div className='centerHome'>
                 <div className='centerText'>
                     <Typical

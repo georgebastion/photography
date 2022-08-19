@@ -7,7 +7,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
-
 import "./photography.scss";
 
 import { FreeMode, Pagination } from "swiper";
@@ -16,13 +15,21 @@ import { photos } from './photos';
 import { GiPhotoCamera, GiDoorHandle } from 'react-icons/gi';
 import { BsFillCalendarDayFill } from 'react-icons/bs'
 import { BiPhotoAlbum } from 'react-icons/bi';
+import {GrDocumentUpdate} from 'react-icons/gr';
+import { AiOutlineDelete } from 'react-icons/ai';
 
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
-const Photography = () => {
-    
+import { deleteImage } from "../../actions/images";
+
+import Loader from '../loader/Loader'
+
+const Photography = ({ setCurrentid }) => {
+    const dispatch = useDispatch();
+    const [updatedd, setUpdatedd] = useState(false);
+
     const images = useSelector((state)=> state.images)
-    console.log(images);
     return (
         <div className="photographyy">
                 <h1>Photography</h1>
@@ -57,6 +64,8 @@ const Photography = () => {
             </div>
             <div className="studioo">
                 <h2 className="studioheader">Studio Photos</h2>
+                {
+                !images.length ? <Loader /> :
                 <Swiper
                     slidesPerView={5}
                     spaceBetween={5}
@@ -68,61 +77,24 @@ const Photography = () => {
                     className="mySwiper"
                     >
                         {
-                            photos.map((pp, index)=>
-                                <SwiperSlide key={index}>
+                            images.map((pp)=>
+                            (
+                                <SwiperSlide key={pp._id}>
                                     <div className="studiopics">
-                                        <img className="picc" src={pp.img} alt='Studio Photos' />
+                                        <div className="admIcons">
+                                            <GrDocumentUpdate className="updateIcon" onClick={()=>setCurrentid(pp._id)} />
+                                            <AiOutlineDelete className="updateIcon" onClick={()=>dispatch(deleteImage(pp._id))} />
+                                        </div>          
+                                        <div className="piccs">
+                                            <img className="picc" src={pp.selectedFile} alt='Studio Photos' />
+                                        </div>                              
                                     </div>
                                 </SwiperSlide>
                             )
-                        }
-                </Swiper>
-            </div>
-            <div className="studioo">
-                <h2 className="studioheader">Wedding Photos</h2>
-                <Swiper
-                    slidesPerView={5}
-                    spaceBetween={5}
-                    freeMode={true}
-                    pagination={{
-                        clickable: true,
-                    }}
-                    modules={[FreeMode, Pagination]}
-                    className="mySwiper"
-                    >
-                        {
-                            photos.map((pp, index)=>
-                                <SwiperSlide key={index}>
-                                    <div className="studiopics">
-                                        <img className="picc" src={pp.img} alt='Studio Photos' />
-                                    </div>
-                                </SwiperSlide>
                             )
                         }
                 </Swiper>
-            </div>
-            <div className="studioo">
-                <h2 className="studioheader">Outdoor Photos</h2>
-                <Swiper
-                    slidesPerView={5}
-                    spaceBetween={5}
-                    freeMode={true}
-                    pagination={{
-                        clickable: true,
-                    }}
-                    modules={[FreeMode, Pagination]}
-                    className="mySwiper"
-                    >
-                        {
-                            photos.map((pp, index)=>
-                                <SwiperSlide key={index}>
-                                    <div className="studiopics">
-                                        <img className="picc" src={pp.img} alt='Studio Photos' />
-                                    </div>
-                                </SwiperSlide>
-                            )
-                        }
-                </Swiper>
+                }
             </div>
         </div>
     );

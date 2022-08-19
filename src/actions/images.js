@@ -14,10 +14,29 @@ export const getImages = () => async (dispatch) =>  {
 
 export const createImage = (image) => async (dispatch) =>{
     try {
-        console.log(image)
-        const [ data ] = await api.createImage(image);
+        const { data }  = await api.createImage(image);
+        console.log('This is the data')
         dispatch({type:'CREATE', payload:data })
     } catch (error) {
         console.log(error.message)      
+    }
+ }
+export const updateImage = (id, image)=>async(dispatch)=>{
+    try {
+        const {data} = await api.updateImage(id, image);
+
+        dispatch({type:'UPDATE', payload:data})
+    } catch (error) {
+        console.log(error) 
+    }
+}
+
+export const deleteImage = (id) => async (dispatch) =>{
+    try {
+        await api.deleteImage(id);
+
+        dispatch({type:'DELETE', payload: id})
+    } catch (error) {
+        console.log(error) 
     }
 }

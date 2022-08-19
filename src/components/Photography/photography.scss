@@ -15,6 +15,7 @@
 .studioo{
     display: flex;
     flex-direction: column;
+    height: 70vh;
 
 }
 .mySwiper{
@@ -24,9 +25,31 @@
     display: flex;
     margin-bottom: 2rem;
     width: 20vw;
+    position:relative;
+    flex-direction: column;
     
 }
+.admIcons{
+    position: relative;
+    display: flex;
+    justify-content: space-around;
 
+}
+.updateIcon{
+    height: 20px;
+    cursor: pointer;
+    width: 20px;
+    color: #000;
+    padding: 10px;
+    &hover{
+        transform: scale(1.1);
+        color: blue;
+    }
+}
+.piccs{
+    position: relative;
+    
+}
 .picc{
     height: 100%;
     width: 100%;

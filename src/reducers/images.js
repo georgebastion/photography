@@ -2,10 +2,14 @@
 
 export default (images = [], action)=>{
     switch (action.type) {
-        case 'FETCH_ALL':            
+        case 'UPDATE':
+            return images.map((image) => image._id === action.payload._id ? action.payload : images)  
+        case 'FETCH_ALL':             
             return action.payload;
         case 'CREATE':   
             return [...images, action.payload];
+        case 'DELETE':   
+            return images.filter((p)=> p._id !== action.payload )
         default:
             return images;
     }
