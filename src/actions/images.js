@@ -40,3 +40,4 @@ export const deleteImage = (id) => async (dispatch) =>{
         console.log(error) 
     }
 }
+

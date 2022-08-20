@@ -15,7 +15,7 @@
 .studioo{
     display: flex;
     flex-direction: column;
-    height: 70vh;
+    min-height: 30vh;
 
 }
 .mySwiper{
@@ -24,7 +24,6 @@
 .studiopics{
     display: flex;
     margin-bottom: 2rem;
-    width: 20vw;
     position:relative;
     flex-direction: column;
     
@@ -56,12 +55,25 @@
 }
 
 .packages{
+    justify-items: center;
     width: 100vw;
-    display: flex;
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
     justify-content: space-evenly;
     margin-top: 2rem;
     margin-bottom: 2rem;
-    
+    gap: 1rem;
+
+    @media screen and (max-width:1000px){
+        grid-template-columns: repeat(2, 1fr);
+
+        align-items: center;
+    }
+    @media screen and (max-width:500px){
+        grid-template-columns: repeat(1, 1fr);
+
+        align-items: center;
+    }
 }
 .cardsp{
     padding: 1rem;

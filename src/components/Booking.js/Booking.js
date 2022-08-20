@@ -1,4 +1,5 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect, useRef} from 'react';
+import emailjs from '@emailjs/browser';
 
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
@@ -11,21 +12,38 @@ import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 
 import Moment from 'react-moment';
 import './booking.scss';
+import { Input } from '@mui/material';
 
     
 const Booking = () => {
-    const [date, setDate] = useState(new Date());
-    const [value, setValue] = useState(true);
-    const [time, setTime] = useState();
+    const [date, setDate] = useState('');
+    const [value, setValue] = useState('');
 
+    const forms = useRef();
+    const [done, setDone]=useState(false);
 
+    const sendEmail = (e) => {
+        e.preventDefault();
+        emailjs.sendForm('service_mud1jbg', 'template_7uval9u', forms.current, 'pjPenMLRWAHv3ZFRB')
+          .then((result) => {
+              console.log(result.text);
+              setDone(true);
+          }, (error) => {
+              console.log(error.text);
+          });
+          
+      };
 
-    const handleChange=((newValue)=>{
-        setValue(newValue)
+    const handleChange=((e)=>{
+        setValue(e.currentTarget.value)
     })
-    const handleChanged=((newValue)=>{
-        setDate(newValue)
-    })
+   
+    const handleChanged=(e)=>{
+        setDate(e.currentTarget.value)
+
+    }
+   
+  
     return (
         <div className='calendarr'>
 
@@ -33,36 +51,34 @@ const Booking = () => {
             
             <div className='calendardiv'>
                     <div className='calendarshow'>
-                        <h5 className='selectday' >Select day and time</h5>               
+                        <h5 className='selectday' >Select day and time</h5>
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <Stack spacing={4} sx={{padding:'1rem'}}>
-                                <MobileDatePicker
-                                label="Select date"
-                                inputFormat="MM/dd/yyyy"
-                                value={date}
-                                onChange={handleChanged}
-                                renderInput={(params) => <TextField {...params} />}
-                                />
-                                <TimePicker
-                                label="Select time"
-                                value={value}
-                                onChange={handleChange}
-                                renderInput={(params) => <TextField {...params} />}
-                                />
-                                
+                            <Stack spacing={4} sx={{padding:'1rem'}} id='centerrr' >
+                            <form id='mimis' ref={forms} onSubmit={sendEmail}>
+                                <TextField name='name' type='name' id='namemm' label='Your name' style={{color:'black', width:'16.5rem'}}/>
+                                <TextField name='number' id='namemm' type='number' label='Phone Number' style={{color:'black', marginTop:0, width:'16.5rem'}} />
+                                <TextField name='reason' type='multiline' label='Say something' style={{color:'black', width:'16.5rem'}} />
+                                <TextField name='date' type='date'  style={{color:'black', width:'16.5rem'}} value={date}  onChange={handleChanged}  />
+                                <TextField name='time' type='time'  style={{color:'black', width:'16.5rem'}} value={value}  onChange={handleChange}  />
+
+                                <select name='category' type='category' className='' style={{marginTop:'1rem', padding:'10px', width:'14.5rem' }} >
+                                    <option value=''>Select Category</option>
+                                    <option value='wedding'>Wedding</option>
+                                    <option value='branding'>branding</option>
+                                    <option value='studio'>studio</option>
+                                    <option value='outdoors'>outdoors</option>
+                                </select>
+                            <button className='btn-grad' type='submit'>Book</button>
+                            </form>               
+                                <span style={{color:'green'}}>{done && "Email sent. Regards"}</span>
                             </Stack>
                         </LocalizationProvider>
                     </div>
-                    <div className='topss'>
-                        <div className='selectday'>
-                            <p>Selected day: <h2 className='ssday'>{date.toDateString()}</h2> </p>
-                            <p>Selected time: <h2 className='ssday'><Moment format='HH:mm'>{value.toString()}</Moment></h2> </p>  
-                        </div>
-                        <div className='bookk'>
-                            <h6 className='bbkk'>NB: You have to pay a deposit fee to fully book a session</h6>
-                            <button className='btn-grad '>Book</button>
-                        </div>
-                    </div>
+    
+         
+                            {/*<p>Selected time: <h2 className='ssday'><Moment format='HH:mm'>{value.toString()}</Moment></h2> </p>  */}
+            
+                  
             </div>
         </div>
     );

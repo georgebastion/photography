@@ -12,25 +12,28 @@ const Home = () => {
         <div className='hometop'>
             <div className='centerHome'>
                 <div className='centerText'>
+                    <h1>Eyzoh</h1>
                     <Typical
                                 loop={Infinity}
                                 steps={[
-                                    'Eyzoh Photography',
+                                    'Photography',
                                     4000,
-                                    'Eyzoh Designs',
+                                    'Designs',
                                     4000,
                                 ]}
                             />
                 </div>
-                <div className='iconshome'>
+                {/*
+                    <div className='iconshome'>
                     <div className='iconss lft'>
-                        
-                        <IoChevronBackOutline className='iconfb ' />
+                    
+                    <IoChevronBackOutline className='iconfb ' />
                     </div>
                     <div className='iconss rgt'>
-                        <IoChevronForwardOutline className='iconfb'/>
+                    <IoChevronForwardOutline className='iconfb'/>
                     </div>
-                </div>
+                    </div>
+                */}
                 <div className='explorebtn  expbtn'>
                     <h3 className='exploreh'>
                         Explore More

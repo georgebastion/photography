@@ -9,6 +9,8 @@ import { updateImage } from '../../actions/images';
 import { useEffect } from 'react';
 
 const Admin = ( {currentid, setCurrentid}) => {
+    const user = JSON.parse(localStorage.getItem('profile'));
+
     const dispatch = useDispatch();
     const [files, setFiles] = useState({
         category:'', selectedFile:''
@@ -40,23 +42,30 @@ const Admin = ( {currentid, setCurrentid}) => {
         setFiles({ category:'', selectedFile:'' });
     })
     return (
-        <div className='adminn'>
-            <h1>ADMIN</h1>
-            <form onSubmit={handleSubmit}>
-                <h4>{post? 'Update' : 'Upload'} Images</h4>
-                <FileBase multiple={false} type='file' onDone={({base64})=>setFiles({...files, selectedFile:base64})} />
-                <select className='' onChange={(e)=>setFiles({...files, category:e.target.value})}>
-                    <option value=''>Select Category</option>
-                    <option value='wedding'>Wedding</option>
-                    <option value='branding'>branding</option>
-                    <option value='studio'>studio</option>
-                    <option value='outdoors'>outdoors</option>
-                    <option value='featured'>featured</option>
-                </select>
-                <button className='btn-gradddd' type='submit'>{post? 'Update':'Submit'}</button>
-            </form>
-            
-        </div>
+        <>
+        {
+            user ? (
+                <div className='adminn'>
+                    <h1>ADMIN</h1>
+                    <form onSubmit={handleSubmit}>
+                        <h4>{post? 'Update' : 'Upload'} Images</h4>
+                        <FileBase multiple={false} type='file' onDone={({base64})=>setFiles({...files, selectedFile:base64})} />
+                        <select className='' onChange={(e)=>setFiles({...files, category:e.target.value})}>
+                            <option value=''>Select Category</option>
+                            <option value='wedding'>Wedding</option>
+                            <option value='branding'>branding</option>
+                            <option value='studio'>studio</option>
+                            <option value='outdoors'>outdoors</option>
+                            <option value='featured'>featured</option>
+                        </select>
+                        <button className='btn-gradddd' type='submit'>{post? 'Update':'Submit'}</button>
+                    </form>
+                    
+                </div>
+
+            ):null}
+   
+        </>
     );
 };
 

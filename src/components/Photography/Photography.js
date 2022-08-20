@@ -3,6 +3,8 @@ import React, { useRef, useState, useEffect } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import ReactImageAppear from 'react-image-appear';
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -26,6 +28,8 @@ import { deleteImage } from "../../actions/images";
 import Loader from '../loader/Loader'
 
 const Photography = ({ setCurrentid }) => {
+    const user = JSON.parse(localStorage.getItem('profile'));
+
     const dispatch = useDispatch();
     const [updatedd, setUpdatedd] = useState(false);
 
@@ -64,9 +68,19 @@ const Photography = ({ setCurrentid }) => {
             </div>
             <div className="studioo">
                 <h2 className="studioheader">Studio Photos</h2>
-                {
-                !images.length ? <Loader /> :
+                
                 <Swiper
+                    breakpoints={{
+                        1000:{
+                            slidesPerView:4
+                        },
+                        500:{
+                            slidesPerView:2
+                        },
+                        200:{
+                            slidesPerView:1
+                        }
+                    }}
                     slidesPerView={5}
                     spaceBetween={5}
                     freeMode={true}
@@ -81,12 +95,17 @@ const Photography = ({ setCurrentid }) => {
                             (
                                 <SwiperSlide key={pp._id}>
                                     <div className="studiopics">
-                                        <div className="admIcons">
-                                            <GrDocumentUpdate className="updateIcon" onClick={()=>setCurrentid(pp._id)} />
-                                            <AiOutlineDelete className="updateIcon" onClick={()=>dispatch(deleteImage(pp._id))} />
-                                        </div>          
+                                        {
+                                            user ?(
+                                                <div className="admIcons">
+                                                    <GrDocumentUpdate className="updateIcon" onClick={()=>setCurrentid(pp._id)} />
+                                                    <AiOutlineDelete className="updateIcon" onClick={()=>dispatch(deleteImage(pp._id))} />
+                                                </div>          
+                                            ):
+                                            null
+                                        }
                                         <div className="piccs">
-                                            <img className="picc" src={pp.selectedFile} alt='Studio Photos' />
+                                            <ReactImageAppear className="picc" src={pp.selectedFile} animation='zoomIn' Loader={<Loader />} alt='Studio Photos' />
                                         </div>                              
                                     </div>
                                 </SwiperSlide>
@@ -94,7 +113,7 @@ const Photography = ({ setCurrentid }) => {
                             )
                         }
                 </Swiper>
-                }
+                
             </div>
         </div>
     );

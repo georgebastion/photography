@@ -10,6 +10,7 @@ import Photography from './components/Photography/Photography';
 import Contact from './components/Contact/Contact';
 import Main from './components/Main/Main';
 import Admin from './components/admin/Admin';
+import Auth from './components/Auth/Auth';
 
 function App() {
   const location=useLocation();
@@ -26,6 +27,8 @@ function App() {
           <Route path='/contact' element={<Contact/>} />
           <Route path='/about' element={<About/>} />
           <Route path='/admin' element={<Admin/>} />
+          <Route path='/auth' element={<Auth/>} />
+
 
         </Routes>
 
