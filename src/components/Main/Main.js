@@ -6,11 +6,12 @@ import Nav from '../Nav/Nav';
 import Photography from '../Photography/Photography';
 
 import { useDispatch } from 'react-redux';
-import { getImages } from '../../actions/images'
+import { getImages,getWedding, getStudio } from '../../actions/images'
 import Admin from '../admin/Admin';
 
 
 import Headroom from 'react-headroom';
+import Contact from '../Contact/Contact';
 
 const Main = () => {
     const dispatch = useDispatch();
@@ -18,6 +19,8 @@ const Main = () => {
 
     useEffect(()=>{
         dispatch(getImages());
+        dispatch(getStudio());
+        dispatch(getWedding());
     }, [ currentid, dispatch])
 
     return (
@@ -29,6 +32,7 @@ const Main = () => {
             <Photography setCurrentid={ setCurrentid }/>
             <Booking /> 
             <Branding />
+            <Contact />
         </div>
     );
 };

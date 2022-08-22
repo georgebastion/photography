@@ -9,7 +9,10 @@ API.interceptors.request.use((req)=>{
     return req;
 });
 
+//fetchoutdoors
 export const fetchData = ()=> API.get('/photos');
+export const fetchStudio = () => API.get('/photos/studio');
+export const fetchWedding = () => API.get('/photos/wedding');
 
 export const createImage = (newImage) => API.post('/photos', newImage);
 

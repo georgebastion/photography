@@ -13,6 +13,7 @@ import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import Moment from 'react-moment';
 import './booking.scss';
 import { Input } from '@mui/material';
+import Nav from '../Nav/Nav';
 
     
 const Booking = () => {
@@ -45,7 +46,8 @@ const Booking = () => {
    
   
     return (
-        <div className='calendarr'>
+        <div className='calendarr' id='booking' >
+            <Nav />
 
             <h1 className='cheader'>Book a Photo Session</h1>
             

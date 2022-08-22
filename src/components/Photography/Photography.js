@@ -26,6 +26,7 @@ import { useDispatch } from "react-redux";
 import { deleteImage } from "../../actions/images";
 
 import Loader from '../loader/Loader'
+import Nav from "../Nav/Nav";
 
 const Photography = ({ setCurrentid }) => {
     const user = JSON.parse(localStorage.getItem('profile'));
@@ -34,8 +35,12 @@ const Photography = ({ setCurrentid }) => {
     const [updatedd, setUpdatedd] = useState(false);
 
     const images = useSelector((state)=> state.images)
+
+    console.log(images)
+
     return (
-        <div className="photographyy">
+        <div className="photographyy" id='photography' >
+            <Nav />
                 <h1>Photography</h1>
             
             <div className="packages">
@@ -68,53 +73,175 @@ const Photography = ({ setCurrentid }) => {
             </div>
             <div className="studioo">
                 <h2 className="studioheader">Studio Photos</h2>
-                
-                <Swiper
-                    breakpoints={{
-                        1000:{
-                            slidesPerView:4
-                        },
-                        500:{
-                            slidesPerView:2
-                        },
-                        200:{
-                            slidesPerView:1
-                        }
-                    }}
-                    slidesPerView={5}
-                    spaceBetween={5}
-                    freeMode={true}
-                    pagination={{
-                        clickable: true,
-                    }}
-                    modules={[FreeMode, Pagination]}
-                    className="mySwiper"
-                    >
-                        {
-                            images.map((pp)=>
-                            (
-                                <SwiperSlide key={pp._id}>
-                                    <div className="studiopics">
-                                        {
-                                            user ?(
-                                                <div className="admIcons">
-                                                    <GrDocumentUpdate className="updateIcon" onClick={()=>setCurrentid(pp._id)} />
-                                                    <AiOutlineDelete className="updateIcon" onClick={()=>dispatch(deleteImage(pp._id))} />
-                                                </div>          
-                                            ):
-                                            null
-                                        }
-                                        <div className="piccs">
-                                            <ReactImageAppear className="picc" src={pp.selectedFile} animation='zoomIn' Loader={<Loader />} alt='Studio Photos' />
-                                        </div>                              
-                                    </div>
-                                </SwiperSlide>
-                            )
-                            )
-                        }
-                </Swiper>
+                {
+                    images.length ? 
+                        <Swiper
+                            breakpoints={{
+                                1000:{
+                                    slidesPerView:4
+                                },
+                                500:{
+                                    slidesPerView:2
+                                },
+                                200:{
+                                    slidesPerView:1
+                                }
+                            }}
+                            slidesPerView={5}
+                            spaceBetween={5}
+                            freeMode={true}
+                            pagination={{
+                                clickable: true,
+                            }}
+                            modules={[FreeMode, Pagination]}
+                            className="mySwiper"
+                            >
+                                {
+                                    images.map((pp)=>
+                                    (
+                                            pp.category === 'studio' ? 
+                                            
+                                                <SwiperSlide key={pp._id}>
+                                                    <div className="studiopics">
+                                                        {
+                                                            user ?(
+                                                                <div className="admIcons">
+                                                                    <GrDocumentUpdate className="updateIcon" onClick={()=>setCurrentid(pp._id)} />
+                                                                    <AiOutlineDelete className="updateIcon" onClick={()=>dispatch(deleteImage(pp._id))} />
+                                                                </div>          
+                                                            ):
+                                                            null
+                                                        }
+                                                        <div className="piccs">
+                                                                    <ReactImageAppear className="picc" src={pp.selectedFile} animation='zoomIn' Loader={<Loader />} alt='Studio Photos' />
+                                                        </div>                              
+                                                    </div>
+                                                </SwiperSlide>
+                                            : null
+                                    )
+                                    )
+                                }
+                        </Swiper>
+                        : 
+                    <Loader />
+                }
                 
             </div>
+
+            <div className="studioo">
+                <h2 className="studioheader">Wedding Photos</h2>
+                {
+                    images.length ? 
+                        <Swiper
+                            breakpoints={{
+                                1000:{
+                                    slidesPerView:4
+                                },
+                                500:{
+                                    slidesPerView:2
+                                },
+                                200:{
+                                    slidesPerView:1
+                                }
+                            }}
+                            slidesPerView={5}
+                            spaceBetween={5}
+                            freeMode={true}
+                            pagination={{
+                                clickable: true,
+                            }}
+                            modules={[FreeMode, Pagination]}
+                            className="mySwiper"
+                            >
+                                {
+                                    images.map((pp)=>
+                                    (
+                                            pp.category === 'wedding' ? 
+                                            
+                                                <SwiperSlide key={pp._id}>
+                                                    <div className="studiopics">
+                                                        {
+                                                            user ?(
+                                                                <div className="admIcons">
+                                                                    <GrDocumentUpdate className="updateIcon" onClick={()=>setCurrentid(pp._id)} />
+                                                                    <AiOutlineDelete className="updateIcon" onClick={()=>dispatch(deleteImage(pp._id))} />
+                                                                </div>          
+                                                            ):
+                                                            null
+                                                        }
+                                                        <div className="piccs">
+                                                                    <ReactImageAppear className="picc" src={pp.selectedFile} animation='zoomIn' Loader={<Loader />} alt='Studio Photos' />
+                                                        </div>                              
+                                                    </div>
+                                                </SwiperSlide>
+                                            : null
+                                    )
+                                    )
+                                }
+                        </Swiper>
+                        : 
+                    <Loader />
+                }
+                
+            </div>
+
+            <div className="studioo">
+                <h2 className="studioheader">Outdoor Photos</h2>
+                {
+                    images.length ? 
+                        <Swiper
+                            breakpoints={{
+                                1000:{
+                                    slidesPerView:4
+                                },
+                                500:{
+                                    slidesPerView:2
+                                },
+                                200:{
+                                    slidesPerView:1
+                                }
+                            }}
+                            slidesPerView={5}
+                            spaceBetween={5}
+                            freeMode={true}
+                            pagination={{
+                                clickable: true,
+                            }}
+                            modules={[FreeMode, Pagination]}
+                            className="mySwiper"
+                            >
+                                {
+                                    images.map((pp)=>
+                                    (
+                                            pp.category === 'outdoors' ? 
+                                            
+                                                <SwiperSlide key={pp._id}>
+                                                    <div className="studiopics">
+                                                        {
+                                                            user ?(
+                                                                <div className="admIcons">
+                                                                    <GrDocumentUpdate className="updateIcon" onClick={()=>setCurrentid(pp._id)} />
+                                                                    <AiOutlineDelete className="updateIcon" onClick={()=>dispatch(deleteImage(pp._id))} />
+                                                                </div>          
+                                                            ):
+                                                            null
+                                                        }
+                                                        <div className="piccs">
+                                                                    <ReactImageAppear className="picc" src={pp.selectedFile} animation='zoomIn' Loader={<Loader />} alt='Studio Photos' />
+                                                        </div>                              
+                                                    </div>
+                                                </SwiperSlide>
+                                            : null
+                                    )
+                                    )
+                                }
+                        </Swiper>
+                        : 
+                    <Loader />
+                }
+                
+            </div>
+            
         </div>
     );
 };

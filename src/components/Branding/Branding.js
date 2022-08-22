@@ -4,11 +4,13 @@ import pipc from '../../assets/images/tshirtd.jpg';
 import './branding.scss';
 import piccc from '../../assets/images/tshirtt.png'
 import picccc from '../../assets/images/13692775_Black_Hoodie_Mockup.jpg'
+import Nav from '../Nav/Nav';
 
 
 const Branding = () => {
     return (
-        <div className='brandingg'>
+        <div className='brandingg' id='branding' >
+            <Nav />
             <h1>BRANDING</h1>
             <p> I print amazing design on your cloths.</p>
             <ul>

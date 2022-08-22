@@ -6,11 +6,29 @@ import * as api from '../api';
 export const getImages = () => async (dispatch) =>  {
     try {
         const { data } = await api.fetchData();
-        dispatch({type:'FETCH_ALL', payload: data})
+        dispatch({type:'OTHERS', payload: data})
     } catch (error) {
         console.log(error.message)
     } 
 }
+export const getStudio = () => async (dispatch) =>  {
+    try {
+        const { data } = await api.fetchStudio();
+        dispatch({type:'OTHERS', payload: data})
+    } catch (error) {
+        console.log(error.message)
+    } 
+}
+
+export const getWedding = () => async (dispatch) =>  {
+    try {
+        const { data } = await api.fetchWedding();
+        dispatch({type:'OTHERS', payload: data})
+    } catch (error) {
+        console.log(error.message)
+    } 
+}
+
 
 export const createImage = (image) => async (dispatch) =>{
     try {

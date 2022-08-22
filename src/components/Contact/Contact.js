@@ -21,10 +21,10 @@ const Contact = () => {
   };
     return (
         <div className='contactform'>
-            <Nav color='black'/>
+            <Nav color='white'/>
             <div className='thecontact'>  
                 <div className='leftside'>
-                    <h1 className='headerr'>Contact</h1>
+                    <h1 className='headerr'>CONTACT</h1>
                     <p className='headertext'>For all pricing and booking inquiries , please fill out the form below. Please include as much relevant information as possible, for example, the location of the project, amount of images needed, intended usage of the images, and timeframe for project completion. I look forward to hearing from you.</p> 
                 </div>
                 <form ref={form} onSubmit={sendEmail}>  
